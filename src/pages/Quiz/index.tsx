@@ -35,6 +35,8 @@ export default function Quiz() {
     wrong: 0,
   })
 
+  const totalScore = result.correct * 5
+
   const { quiz } = useContext(AppContext)
 
   const { pathname } = useLocation()
@@ -45,6 +47,8 @@ export default function Quiz() {
   const questions = quizQuestions.questions
 
   const actualAnswer = questions[activeQuestion]?.answer 
+
+const overallScore = questions.length * 5
 
   // handles keyboard events
   useEffect(() => {
@@ -252,10 +256,10 @@ export default function Quiz() {
           <StyledQuizTitle isSelected={isSelected}>{quizQuestions.title}</StyledQuizTitle>
         </IconTitleWrapper>
         <CorrectAnswer isSelected={isSelected}>
-          {result.correct}
+          {totalScore}
         </CorrectAnswer>
         <TotalQuestion isSelected={isSelected}>
-          out of {questions.length}
+          out of {overallScore}
         </TotalQuestion>
        </ResultCard>
        <StyledLink to={`/`}>
